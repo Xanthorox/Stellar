@@ -130,6 +130,8 @@ Execute the `stellar` binary from the `build` directory, pointing it to your con
 
 Stellar will start, load the specified decoders, and begin processing the PCAP file. The output and logs from the decoders will be printed to your console or to the log file specified in the config.
 
+
+Note = Few files are missing here duo to upload restrictions you can hit me up on telegram or get it from the official xanthorox channel
 ## A Final Word
 
 This is a complex tool. I have provided the source code and basic instructions. It's up to you, the community, to explore its full capabilities. Reverse engineer it, improve it, I don't Give a fk
