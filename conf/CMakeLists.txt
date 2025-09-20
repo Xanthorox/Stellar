@@ -1,0 +1,1 @@
+install(FILES stellar.toml DESTINATION conf COMPONENT PROGRAM)

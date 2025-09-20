@@ -1,0 +1,1 @@
+install(FILES stat_format.sh DESTINATION ./ COMPONENT PROGRAM)

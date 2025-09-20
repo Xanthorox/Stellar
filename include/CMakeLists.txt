@@ -1,0 +1,6 @@
+install(FILES stellar/utils.h DESTINATION include/stellar/ COMPONENT LIBRARIES)
+install(FILES stellar/packet.h DESTINATION include/stellar/ COMPONENT LIBRARIES)
+install(FILES stellar/session.h DESTINATION include/stellar/ COMPONENT LIBRARIES)
+install(FILES stellar/stellar.h DESTINATION include/stellar/ COMPONENT LIBRARIES)
+install(FILES stellar/exdata.h DESTINATION include/stellar/ COMPONENT LIBRARIES)
+install(FILES stellar/log.h DESTINATION include/stellar/ COMPONENT LIBRARIES)

@@ -1,0 +1,77 @@
+[instance]
+    id = 1 # range: [0, 4095] (12 bit)
+
+[packet_io]
+    mode = "pcapfile"                      # pcapfile, pcaplist, marsio
+    app_symbol = "stellar"
+    dev_symbol = "nf_0_fw"
+    pcap_path = "/tmp/test.pcap"
+    pcap_done_exit = 1                     # range: [0, 1]
+    pcap_queue_size = 1024                 # range: [1, 4294967295]
+    thread_num = 1                         # range: [1, 256]
+    cpu_mask = [5, 6, 7, 8, 9, 10, 11, 12]
+    idle_yield_ms = 900                    # range: [0, 60000] (ms)
+
+    [packet_io.packet_pool]
+        capacity = 1024       # range: [1, 4294967295]
+
+    [packet_io.ip_reassembly]
+        fail_action = 1       # 0: bypass, 1: drop
+        timeout_ms = 1000     # range: [1, 60000] (ms)
+        frag_queue_num = 1024 # range: [1, 4294967295]
+        frag_queue_size = 64  # range: [2, 65535]
+
+[session_manager]
+    tcp_session_max = 50000
+    udp_session_max = 50000
+
+    evict_old_on_tcp_table_limit = 1 # range: [0, 1]
+    evict_old_on_udp_table_limit = 1 # range: [0, 1]
+
+    expire_period_ms = 0    # range: [0, 60000] (ms)
+    expire_batch_max = 1024 # range: [1, 1024]
+
+    [session_manager.tcp_timeout_ms]
+        init = 5000             # range: [1, 60000] (ms)
+        handshake = 5000        # range: [1, 60000] (ms)
+        data = 5000             # range: [1, 15999999000] (ms)
+        half_closed = 5000      # range: [1, 604800000] (ms)
+        time_wait = 5000        # range: [1, 600000] (ms)
+        discard_default = 10000 # range: [1, 15999999000] (ms)
+        unverified_rst = 5000   # range: [1, 600000] (ms)
+
+    [session_manager.udp_timeout_ms]
+        data = 5000            # range: [1, 15999999000] (ms)
+        discard_default = 5000 # range: [1, 15999999000] (ms)
+
+    [session_manager.duplicated_packet_bloom_filter]
+        enable = 1
+        capacity = 1000000     # range: [1, 4294967295]
+        time_window_ms = 10000 # range: [1, 60000] (ms)
+        error_rate = 0.00001   # range: [0.0, 1.0]
+
+    [session_manager.evicted_session_bloom_filter]
+        enable = 1             # range: [0, 1]
+        capacity = 1000000     # range: [1, 4294967295]
+        time_window_ms = 10000 # range: [1, 60000] (ms)
+        error_rate = 0.00001   # range: [0.0, 1.0]
+
+    [session_manager.tcp_reassembly]
+        enable = 1                  # range: [0, 1]
+        timeout_ms = 10000          # range: [1, 60000] (ms)
+        buffered_segments_max = 256 # range: [2, 4096] per flow
+
+[log]
+    output = "both"           # stderr, file, both
+    file = "log/stellar.log"
+    level = "INFO"            # TRACE, DEBUG, INFO, WARN, ERROR, FATAL
+
+[monitor]
+    listen_port = 80
+    data_link_bind_port = 37008
+    connection_idle_timeout = 60    # second
+    cli_request_timeout = 3         # second
+    pktdump_task_max_num = 3
+
+[session_debugger]
+    enable = 0 # range: [0, 1]
